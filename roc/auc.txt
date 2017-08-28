@@ -1,0 +1,15 @@
+auc of b_sig_c_bkg_xgb: 0.942591516439
+auc of b_sig_c_bkg_gcforest: 0.914168929753
+auc of b_sig_c_bkg_GBDT: 0.939040367615
+ 
+auc of b_sig_o_bkg_xgb: 0.985851889734
+auc of b_sig_o_bkg_gcforest: 0.979041602497
+auc of b_sig_o_bkg_GBDT: 0.985150780241
+ 
+auc of c_sig_b_bkg_xgb: 0.899593698199
+auc of c_sig_b_bkg_gcforest: 0.860746492713
+auc of c_sig_b_bkg_GBDT: 0.894180854661
+ 
+auc of c_sig_o_bkg_xgb: 0.877686378868
+auc of c_sig_o_bkg_gcforest: 0.858394877815
+auc of c_sig_o_bkg_GBDT: 0.873575549967
