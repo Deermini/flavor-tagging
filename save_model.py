@@ -69,7 +69,7 @@ def AUC(a,b):
 def run(train_X,test_X,train_y,test_y):
     """
 	存储训练的模型及roc曲线的100个点方便以后画图
-	"""
+    """
     #GBDT model
     GBDT=GradientBoostingClassifier(n_estimators=200,subsample=0.9,learning_rate=0.3,min_samples_leaf=5,random_state=33)
     GBDT.fit(train_X,train_y)
@@ -80,11 +80,11 @@ def run(train_X,test_X,train_y,test_y):
     
     #XGBoost model
     xgb_model = xgb.XGBClassifier(max_depth=9, 
-    								  min_child_weight=1,
-    								  subsample=0.9,
-    								  colsample_bytree=0.8,
-    								  learning_rate = 0.1,
-    								  n_estimators = 200,
+    				  min_child_weight=1,
+    				  subsample=0.9,
+    				  colsample_bytree=0.8,
+    				  learning_rate = 0.1,
+    				  n_estimators = 200,
     								  )
     xgb_model=fit(train_X, train_y)
     pickle.dump(xgb_model,open('./model/xgb_model.pickle.dat','wb'))
@@ -92,14 +92,14 @@ def run(train_X,test_X,train_y,test_y):
     xgb_model=pickle.load(open('./model/xgb_model.pickle.dat','rb'))
     y_score1= xgb_model.predict_proba(test_X)
 
-	#gcforest
-	gcf = gcForest(tolerance=0.0,n_cascadeRFtree=300,n_jobs=-1)
-	_ = gcf.cascade_forest(train_X,train_y)
-	joblib.dump(gcf, 'F:/project files/FlavorTagging/model/gcforest.pkl')
+    #gcforest
+    gcf = gcForest(tolerance=0.0,n_cascadeRFtree=300,n_jobs=-1)
+    _ = gcf.cascade_forest(train_X,train_y)
+    joblib.dump(gcf, 'F:/project files/FlavorTagging/model/gcforest.pkl')
 
-	gcf=joblib.load('F:/project files/FlavorTagging/model/gcforest.pkl')
-	pred_proba = gcf.cascade_forest(test_X)
-	y_score2 = np.mean(pred_proba, axis=0)
+    gcf=joblib.load('F:/project files/FlavorTagging/model/gcforest.pkl')
+    pred_proba = gcf.cascade_forest(test_X)
+    y_score2 = np.mean(pred_proba, axis=0)
 	
     #存GBDT下ROC曲线的100个点
     b_roc_GBDT=np.array(roc_b_sig_c_bkg(y_score,test_y)).T
@@ -113,16 +113,16 @@ def run(train_X,test_X,train_y,test_y):
     np.savetxt('roc/b_roc_xgb.txt',b_roc_xgb,delimiter=",")
     np.savetxt('roc/c_roc_xgb.txt',c_roc_xgb,delimiter=",")
 
-	#存gcforest下ROC曲线的100个点
+    #存gcforest下ROC曲线的100个点
     b_roc_gcforest=np.array(roc_b_sig_c_bkg(y_score2,test_y)).T
-	c_roc_gcforest=np.array(roc_c_sig_b_bkg(y_score2,test_y)).T
-	np.savetxt('roc/b_roc_gcforest.txt',b_roc_gcforest,delimiter=",")
-	np.savetxt('roc/c_roc_gcforest.txt',c_roc_gcforest,delimiter=",")
+    c_roc_gcforest=np.array(roc_c_sig_b_bkg(y_score2,test_y)).T
+    np.savetxt('roc/b_roc_gcforest.txt',b_roc_gcforest,delimiter=",")
+    np.savetxt('roc/c_roc_gcforest.txt',c_roc_gcforest,delimiter=",")
 
 def run1():
     """
 	运行完run函数后，我们就可以画出几条相应的曲线并求出AUC值
-	"""
+    """
 	
     #载入文件
     b_roc_GBDT=np.loadtxt('roc/b_roc_GBDT.txt',delimiter=',')
@@ -132,8 +132,8 @@ def run1():
     b_roc_gcforest=np.loadtxt("roc/b_roc_gcforest.txt",delimiter=",")
     c_roc_gcforest=np.loadtxt("roc/c_roc_gcforest.txt",delimiter=",")
 	
-	#画图并计算AUC值
-	#0和1类进行计算，0为正类
+    #画图并计算AUC值
+    #0和1类进行计算，0为正类
     plt.subplot(221)
     roc_auc=AUC(b_roc_xgb[:,0],b_roc_xgb[:,1])
     roc_auc1=AUC(b_roc_GBDT[:,0],b_roc_GBDT[:,1])
@@ -143,7 +143,7 @@ def run1():
     plt.plot(b_roc_gcforest[:,0],b_roc_gcforest[:,1],c='blue',label='gcforest (area = {0:0.5f})'''.format(roc_auc2))
     plt.legend(loc="lower left")
     
-	#0和2类进行计算，0为正类
+    #0和2类进行计算，0为正类
     plt.subplot(222)
     roc_auc=AUC(b_roc_xgb[:,0],b_roc_xgb[:,2])
     roc_auc1=AUC(b_roc_GBDT[:,0],b_roc_GBDT[:,2])
@@ -153,7 +153,7 @@ def run1():
     plt.plot(b_roc_gcforest[:,0],b_roc_gcforest[:,2],c='blue',label='gcforest (area = {0:0.5f})'''.format(roc_auc2))
     plt.legend(loc="lower left")
     
-	#1和0类进行计算，1为正类
+    #1和0类进行计算，1为正类
     plt.subplot(223)
     roc_auc=AUC(c_roc_xgb[:,1],c_roc_xgb[:,0])
     roc_auc1=AUC(c_roc_GBDT[:,1],c_roc_GBDT[:,0])
@@ -163,7 +163,7 @@ def run1():
     plt.plot(c_roc_gcforest[:,1],c_roc_gcforest[:,0],c='blue',label='gcforest (area = {0:0.5f})'''.format(roc_auc2))
     plt.legend(loc="lower left")
     
-	#1和2类进行计算,1为正类
+    #1和2类进行计算,1为正类
     plt.subplot(224)
     roc_auc=AUC(c_roc_xgb[:,1],c_roc_xgb[:,2])
     roc_auc1=AUC(c_roc_GBDT[:,1],c_roc_GBDT[:,2])
@@ -202,7 +202,7 @@ def run3(train_X,test_X,train_y,test_y):
     a=np.argsort(feature_importance)
     AUC=[]
     
-	#采用一对一的方式对数据进行计算，抽出数据中相应的类别。
+    #采用一对一的方式对数据进行计算，抽出数据中相应的类别。
     index_train=list(where(train_y==0)[0]);index_train1=list(where(train_y==1)[0])
     index_train.extend(index_train1)
     train_X=train_X[index_train,];train_y=train_y[index_train]
@@ -211,18 +211,18 @@ def run3(train_X,test_X,train_y,test_y):
     index_test.extend(index_test1)
     test_X = test_X[index_test];test_y = test_y[index_test]
     
-	#选取特征数目从10到63
+    #选取特征数目从10到63
     for i in range(10,63,1):
         index=list(a[:i])
         train_X_new = train_X[:, index]
         test_X_new=test_X[:,index]
         xgb_model = xgb.XGBClassifier(max_depth=9, 
-    								  min_child_weight=1,
-    								  subsample=0.9,
-    								  colsample_bytree=0.8,
-    								  learning_rate = 0.1,
-    								  n_estimators = 200,
-    								  )
+    				      min_child_weight=1,
+    				      subsample=0.9,
+    				      colsample_bytree=0.8,
+    		       		      learning_rate = 0.1,
+    				      n_estimators = 200,
+    					 )
         xgb_model.fit(train_X_new,train_y)
         y_score=xgb_model.predict_proba(test_X_new)
         fpr, tpr, _ = roc_curve(test_y,y_score[:,0],pos_label=0)
@@ -240,14 +240,14 @@ def run3(train_X,test_X,train_y,test_y):
     
 if __name__ == '__main__':
 	
-	#载入数据
+    #载入数据
     train_data = np.load("data/data_train.npy")
     test_data = np.load("data/data_test.npy")
     train_X, test_X = train_data[:, 1:], test_data[:, 1:]
     train_y, test_y = train_data[:, 0], test_data[:, 0]
-	#先运行run()得到模型，再运行run1()即可画出图形
+    #先运行run()得到模型，再运行run1()即可画出图形
     #run(train_X,test_X,train_y,test_y)
-	run1()
+    run1()
 
 
 
