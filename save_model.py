@@ -246,7 +246,7 @@ if __name__ == '__main__':
     train_X, test_X = train_data[:, 1:], test_data[:, 1:]
     train_y, test_y = train_data[:, 0], test_data[:, 0]
     #先运行run()得到模型，再运行run1()即可画出图形
-    #run(train_X,test_X,train_y,test_y)
+    run(train_X,test_X,train_y,test_y)
     run1()
 
 
