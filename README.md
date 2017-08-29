@@ -10,7 +10,7 @@ flavor-tagging
 -------------------
 		运行save_model.py即可。
 
-save.model.py模块介绍：
+save_model.py模块介绍：
 -------------------
 		run():存储模型及roc曲线
 		run1():画出ROC曲线并且计算出相应的AUC值
@@ -18,13 +18,13 @@ save.model.py模块介绍：
 
 实验结果：
 ------------------
-		![](https://github.com/Deermini/flavor-tagging/blob/master/picture/3.png)
+![](https://github.com/Deermini/flavor-tagging/blob/master/picture/3.png)
 		
 
 经过特征选择后的结果：
 ------------------
-		![](https://github.com/Deermini/flavor-tagging/blob/master/feature_selection_result/1-2.png)
-		![](https://github.com/Deermini/flavor-tagging/blob/master/feature_selection_result/1-3.png)
+![](https://github.com/Deermini/flavor-tagging/blob/master/feature_selection_result/1-2.png)
+![](https://github.com/Deermini/flavor-tagging/blob/master/feature_selection_result/1-3.png)
 
 
 
