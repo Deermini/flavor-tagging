@@ -8,7 +8,7 @@ flavor-tagging
 
 代码运行：
 -------------------
-		运行save_model.py即可。
+		运行main.py即可。
 
 save_model.py模块介绍：
 -------------------
