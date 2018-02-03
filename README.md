@@ -2,19 +2,20 @@ flavor-tagging
 ====================
 所需安装的库
 --------------------
-		xgboost
-		gcforest
-		anaconda3
-
+	xgboost
+	gcforest
+	anaconda3
+	tensorflow
+	
 代码运行：
 -------------------
-		运行main.py即可。
+	运行main.py即可。
 
 save_model.py模块介绍：
 -------------------
-		run():存储模型及roc曲线
-		run1():画出ROC曲线并且计算出相应的AUC值
-		run3():使用经过rfe进行特征排序后的结果计算不同特征下的AUC值
+	run():存储模型及roc曲线
+	run1():画出ROC曲线并且计算出相应的AUC值
+	run3():使用经过rfe进行特征排序后的结果计算不同特征下的AUC值
 
 实验结果：
 ------------------
