@@ -24,6 +24,7 @@ save_model.py模块介绍：
 
 经过特征选择后的结果：
 ------------------
+利用特征递归消除算法对特征排序后计算得分
 ![](https://github.com/Deermini/flavor-tagging/blob/master/feature_selection_result/1-2.png)
 ![](https://github.com/Deermini/flavor-tagging/blob/master/feature_selection_result/1-3.png)
 
